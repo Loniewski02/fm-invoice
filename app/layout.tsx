@@ -1,27 +1,30 @@
-import type { Metadata } from 'next';
-import { Montserrat } from 'next/font/google';
-import './globals.css';
+import type { Metadata } from "next";
+import { League_Spartan } from "next/font/google";
+import ThemeProviders from "./theme-provider";
+import "./globals.css";
 
-const fontMontserrat = Montserrat({
-	subsets: ['latin'],
-	weight: ['400'],
-	display: 'block',
-	variable: '--font-montserrat',
+const fontSpartan = League_Spartan({
+  subsets: ["latin"],
+  weight: ["400"],
+  display: "block",
+  variable: "--font-spartan",
 });
 
 export const metadata: Metadata = {
-	title: 'My App',
-	description: 'My App',
+  title: "My App",
+  description: "My App",
 };
 
 export default function RootLayout({
-	children,
+  children,
 }: Readonly<{
-	children: React.ReactNode;
+  children: React.ReactNode;
 }>) {
-	return (
-		<html lang='en'>
-			<body className={`${fontMontserrat.variable} min-h-[100dvh] font-montserrat`}>{children}</body>
-		</html>
-	);
+  return (
+    <html lang="en" className="hidden" suppressHydrationWarning>
+      <body className={`${fontSpartan.variable} min-h-[100dvh] font-spartan`}>
+        <ThemeProviders>{children}</ThemeProviders>
+      </body>
+    </html>
+  );
 }
