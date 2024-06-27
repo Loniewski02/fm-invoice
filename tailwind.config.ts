@@ -23,10 +23,16 @@ const config: Config = {
         Red09: "#EC5757",
         LightRed10: "#9277FF",
         White11: "#F8F8FB",
+        PureWhite: "#ffffff",
         LightBlack12: "#141625",
+      },
+      fontSize: {
+        "13": ["13px", "15px"],
+        "15": ["15px", "15px"],
       },
     },
   },
   plugins: [],
+  darkMode: "class",
 };
 export default config;

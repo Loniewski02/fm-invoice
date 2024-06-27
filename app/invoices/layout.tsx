@@ -1,4 +1,4 @@
-import Navigation from "@/components/Navigation";
+import Navigation from "@/components/ui/Navigation";
 
 export default function SubscriptonLayout({
   children,
@@ -6,9 +6,9 @@ export default function SubscriptonLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <main className="flex flex-col lg:flex-row">
+    <main className="flex grid-cols-[auto,1fr] flex-col lg:grid">
       <Navigation />
-      {children}
+      <div className="h-max">{children}</div>
     </main>
   );
 }

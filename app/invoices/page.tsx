@@ -1,6 +1,13 @@
+import Controls from "@/components/invoices/Controls";
+import Empty from "@/components/invoices/Empty";
 
 const InvoicesPage = () => {
-  return <div className="h-[305vh]"></div>;
+  return (
+    <>
+      <Controls />
+      <Empty />
+    </>
+  );
 };
 
 export default InvoicesPage;
