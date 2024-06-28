@@ -20,7 +20,7 @@ const ThemeSwitchBtn = () => {
   }, []);
 
   return (
-    <div className="flex items-center gap-4">
+    <div className="flex items-center gap-4 text-GraylishBlue06 transition hover:text-White11 active:scale-95">
       <button
         onClick={() => {
           if (resolvedTheme === "dark") {
