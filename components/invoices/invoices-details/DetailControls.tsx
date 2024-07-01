@@ -3,9 +3,9 @@ import Status from "../Status";
 
 const BUTTONS = ["edit", "delete", "mark as paid"];
 
-const InvoiceControls = ({ status }: { status: string }) => {
+const DetailControls = ({ status }: { status: string }) => {
   return (
-    <section className="px-6">
+    <section className="px-6 pb-3">
       <Wrapper className="rounded-lg bg-PureWhite p-6 dark:bg-VeryDarkBlue03 md:flex md:items-center md:justify-between md:px-8 md:py-5">
         <div className="flex items-center justify-between gap-5 md:w-max">
           <p className="text-13 text-Blue07 dark:text-VeryLightBlue05">
@@ -28,4 +28,4 @@ const InvoiceControls = ({ status }: { status: string }) => {
   );
 };
 
-export default InvoiceControls;
+export default DetailControls;

@@ -5,7 +5,7 @@ import { useTheme } from "next-themes";
 import Moon from "@/public/assets/icon-moon.svg";
 import Sun from "@/public/assets/icon-sun.svg";
 
-const ThemeSwitchBtn = () => {
+const ThemeSwitchBtn = ({ className }: { className?: string }) => {
   const { setTheme, resolvedTheme } = useTheme();
   const [isDark, setIsDark] = useState<boolean | null>(null);
 
@@ -20,24 +20,23 @@ const ThemeSwitchBtn = () => {
   }, []);
 
   return (
-    <div className="flex items-center gap-4 text-GraylishBlue06 transition hover:text-White11 active:scale-95">
-      <button
-        onClick={() => {
-          if (resolvedTheme === "dark") {
-            setTheme("light");
-            setIsDark(false);
-          }
-          if (resolvedTheme === "light") {
-            setTheme("dark");
-            setIsDark(true);
-          }
-        }}
-        aria-label="theme change btn"
-      >
-        {isDark && <Sun />}
-        {!isDark && <Moon />}
-      </button>
-    </div>
+    <button
+      onClick={() => {
+        if (resolvedTheme === "dark") {
+          setTheme("light");
+          setIsDark(false);
+        }
+        if (resolvedTheme === "light") {
+          setTheme("dark");
+          setIsDark(true);
+        }
+      }}
+      aria-label="theme change btn"
+      className={`${className && className} text-GraylishBlue06 transition active:scale-95`}
+    >
+      {isDark && <Sun />}
+      {!isDark && <Moon />}
+    </button>
   );
 };
 

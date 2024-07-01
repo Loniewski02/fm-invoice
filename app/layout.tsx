@@ -5,7 +5,7 @@ import "./globals.css";
 
 const fontSpartan = League_Spartan({
   subsets: ["latin"],
-  weight: ["400", "700"],
+  weight: ["300", "400", "700"],
   display: "block",
   variable: "--font-spartan",
 });

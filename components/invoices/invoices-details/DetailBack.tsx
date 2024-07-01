@@ -4,7 +4,7 @@ import Wrapper from "@/components/layout/Wrapper";
 
 import ArrowLeft from "@/public/assets/icon-arrow-left.svg";
 
-const InvoiceBack = () => {
+const DetailBack = () => {
   return (
     <section className="px-6 py-8 md:pt-14 lg:pt-[78px]">
       <Wrapper>
@@ -20,4 +20,4 @@ const InvoiceBack = () => {
   );
 };
 
-export default InvoiceBack;
+export default DetailBack;
