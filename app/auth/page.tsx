@@ -1,6 +1,9 @@
 "use client";
-import Login from "@/components/auth/Login";
 import { useSearchParams } from "next/navigation";
+
+import Register from "@/components/auth/register/Register";
+import Login from "@/components/auth/login/Login";
+import Reset from "@/components/auth/reset/Reset";
 
 const AuthPage = () => {
   const searchParams = useSearchParams();
@@ -13,8 +16,8 @@ const AuthPage = () => {
   return (
     <main>
       {isLogin && <Login />}
-      {isRegister && <Login />}
-      {isReset && <Login />}
+      {isRegister && <Register />}
+      {isReset && <Reset />}
     </main>
   );
 };

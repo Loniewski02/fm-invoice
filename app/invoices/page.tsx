@@ -8,8 +8,11 @@ import InvoicesControls from "@/components/invoices/InvoicesControls";
 
 import ArrowRight from "@/public/assets/icon-arrow-right.svg";
 import Status from "@/components/invoices/Status";
+import { fetchDemoInvoices } from "@/utils/request";
 
-const InvoicesPage = () => {
+const InvoicesPage = async () => {
+  const data = await fetchDemoInvoices();
+  // console.log(data);
   return (
     <>
       <InvoicesControls />

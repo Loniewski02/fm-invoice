@@ -27,3 +27,9 @@ type Invoice = {
   }[];
   total: number;
 };
+
+type RegisterData = {
+  email: string;
+  password: string;
+  password2: string;
+};
