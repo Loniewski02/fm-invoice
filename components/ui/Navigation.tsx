@@ -1,6 +1,7 @@
 import Logo from "@/public/assets/logo.svg";
 import avatar from "@/public/assets/image-avatar.jpg";
 import ThemeSwitchBtn from "./ThemeSwitchBtn";
+import Logout from "./Logout";
 
 const Navigation = () => {
   return (
@@ -9,6 +10,7 @@ const Navigation = () => {
         <div className="absolute bottom-0 left-0 right-0 h-[36px] rounded-tl-[20px] bg-LightViolet02 lg:h-[51.5px]" />
         <Logo className="z-10 block h-[28px] w-[26px]" />
       </div>
+      <Logout />
       <div className="flex items-center gap-6 lg:flex-col">
         <ThemeSwitchBtn />
         <div className="h-full w-px bg-[#494E6E] lg:h-px lg:w-full" />

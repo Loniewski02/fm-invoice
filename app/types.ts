@@ -33,3 +33,7 @@ type RegisterData = {
   password: string;
   password2: string;
 };
+type LoginData = {
+  email: string;
+  password: string;
+};

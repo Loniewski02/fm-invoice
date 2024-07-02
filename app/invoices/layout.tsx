@@ -1,10 +1,18 @@
 import Navigation from "@/components/ui/Navigation";
+import { getServerSession } from "next-auth";
+import { redirect } from "next/navigation";
 
-export default function SubscriptonLayout({
+export default async function InvoicesLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  const session = await getServerSession();
+
+  if (!session) {
+    redirect("/auth");
+  }
+
   return (
     <main className="flex grid-cols-[auto,1fr] flex-col lg:grid">
       <Navigation />

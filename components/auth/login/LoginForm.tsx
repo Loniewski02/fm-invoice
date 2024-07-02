@@ -1,10 +1,22 @@
+"use client";
 import Link from "next/link";
 import Submit from "../Submit";
 import DemoButton from "../DemoButton";
+import { FormLoginAction } from "@/utils/auth";
+import { useFormState } from "react-dom";
+
+const initialState = {
+  email: "",
+  password: "",
+};
 
 const LoginForm = () => {
+  const [state, action] = useFormState<any, FormData>(
+    FormLoginAction,
+    initialState,
+  );
   return (
-    <form action="" className="flex flex-col gap-6">
+    <form action={action} className="flex flex-col gap-6">
       <div className="flex flex-col">
         <label
           htmlFor="email"

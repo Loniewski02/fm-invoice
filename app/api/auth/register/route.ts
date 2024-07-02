@@ -4,8 +4,6 @@ import { emailReg } from "@/utils/constant";
 
 export async function POST(req: any) {
   let res: RegisterData | null;
-  await connectDB();
-
   const data = await req.formData();
   const email = data.get("email");
   const password = data.get("password");
@@ -25,7 +23,6 @@ export async function POST(req: any) {
     };
     connectDB();
     const UserExist = await User.findOne({ email: res.email });
-    console.log(UserExist);
     if (!UserExist) {
       await User.create({
         email: res.email,
