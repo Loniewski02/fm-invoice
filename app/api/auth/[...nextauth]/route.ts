@@ -3,26 +3,13 @@ import User from "@/models/User";
 import NextAuth from "next-auth/next";
 import CredentialsProvider from "next-auth/providers/credentials";
 import bcrypt from "bcryptjs";
-declare module "next-auth" {
-  interface Session {
-    user: {
-      id: string;
-      email: string;
-      image?: string;
-      name?: string;
-    };
-  }
 
-  interface User {
-    id: string;
-  }
-}
 const handler = NextAuth({
   providers: [
     CredentialsProvider({
       credentials: {
-        email: { label: "Email", type: "text" },
-        password: { label: "Password", type: "password" },
+        email: {},
+        password: {},
       },
       async authorize(credentials, req) {
         try {
@@ -56,15 +43,21 @@ const handler = NextAuth({
     async jwt({ token, user }) {
       if (user) {
         token.id = user.id;
+        token.picture = user.picture;
+        token.email = user.email;
       }
       return token;
     },
     async session({ session, token }) {
-      if (session.user) {
-        session.user.id = token.id as string;
-        return session;
-      }
-      return session;
+      return {
+        ...session,
+        user: {
+          id: token.id as string,
+          picture: token.picture as string,
+          email: token.email as string,
+        },
+        error: token.error,
+      };
     },
   },
 });

@@ -4,6 +4,7 @@ import Invoice from "@/models/Invoice";
 import { emailReg } from "@/utils/constant";
 import bcrypt from "bcryptjs";
 import { NextResponse } from "next/server";
+import defaultProfilePic from "@/public/assets/image-avatar.png";
 
 export async function POST(req: any) {
   try {
@@ -46,18 +47,18 @@ export async function POST(req: any) {
         });
       }
 
-      // const newUser = await User.create({
-      //   email,
-      //   password: hashPassword,
-      //   picture: "",
-      // });
+      const newUser = await User.create({
+        email,
+        password: hashPassword,
+        picture: defaultProfilePic.src,
+      });
 
-      // const initialInvoices = {
-      //   _id: newUser._id,
-      //   invoices: [],
-      // };
+      const initialInvoices = {
+        _id: newUser._id,
+        invoices: [],
+      };
 
-      // await Invoice.create(initialInvoices);
+      await Invoice.create(initialInvoices);
 
       return NextResponse.json({
         message: "User registered",

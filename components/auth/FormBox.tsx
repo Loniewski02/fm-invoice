@@ -25,7 +25,7 @@ const FormBox = ({
         name={input.name}
         className="rounded-md border border-GraylishBlue06 bg-PureWhite p-11 py-3 text-15 dark:border-Blue07 dark:bg-LightBlack12"
         placeholder={input.placeholder}
-        // required
+        required
       />
     </div>
   );

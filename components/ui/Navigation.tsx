@@ -1,9 +1,12 @@
 import Logo from "@/public/assets/logo.svg";
-import avatar from "@/public/assets/image-avatar.jpg";
+import avatar from "@/public/assets/image-avatar.png";
 import ThemeSwitchBtn from "./ThemeSwitchBtn";
 import Logout from "./Logout";
+import { getServerSession } from "next-auth";
 
-const Navigation = () => {
+const Navigation = async () => {
+  const session = await getServerSession();
+
   return (
     <nav className="sticky left-0 top-0 z-50 flex justify-between bg-[#373B53] pr-6 dark:bg-VeryDarkBlue03 lg:h-[100dvh] lg:flex-col lg:rounded-r-[20px] lg:pb-6 lg:pr-0">
       <div className="relative grid h-[72px] w-[72px] place-items-center overflow-hidden rounded-r-[20px] bg-Violet01 md:h-[80px] md:w-[80px]  lg:h-[103px] lg:w-[103px]">
@@ -18,7 +21,11 @@ const Navigation = () => {
           className="h-8 w-8 overflow-hidden rounded-full lg:h-10 lg:w-10"
           aria-label="profile details"
         >
-          <img src={avatar.src} alt="" className="h-8 w-8 lg:h-10 lg:w-10" />
+          <img
+            src={session?.user.image ? session.user.image : avatar.src}
+            alt=""
+            className="h-8 w-8 lg:h-10 lg:w-10"
+          />
         </button>
       </div>
     </nav>
