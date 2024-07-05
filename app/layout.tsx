@@ -2,7 +2,9 @@ import type { Metadata } from "next";
 import { League_Spartan } from "next/font/google";
 import ThemeProviders from "./theme-provider";
 import "./globals.css";
-import AuthProvider from "@/components/auth/AuthProvider";
+import AuthProvider from "./auth-provider";
+import MessagesProvider from "./_providers/MessagesContext";
+import Message from "@/components/auth/Message";
 
 const fontSpartan = League_Spartan({
   subsets: ["latin"],
@@ -12,7 +14,7 @@ const fontSpartan = League_Spartan({
 });
 
 export const metadata: Metadata = {
-  title: "My App",
+  title: "Invoices",
   description: "My App",
 };
 
@@ -25,7 +27,12 @@ export default function RootLayout({
     <html lang="en" className="hidden" suppressHydrationWarning>
       <body className={`${fontSpartan.variable} min-h-[100dvh] font-spartan`}>
         <AuthProvider>
-          <ThemeProviders>{children}</ThemeProviders>
+          <MessagesProvider>
+            <ThemeProviders>
+              {children}
+              <Message />
+            </ThemeProviders>
+          </MessagesProvider>
         </AuthProvider>
       </body>
     </html>

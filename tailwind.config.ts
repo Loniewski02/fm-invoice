@@ -30,6 +30,20 @@ const config: Config = {
         "13": ["13px", "15px"],
         "15": ["15px", "15px"],
       },
+      keyframes: {
+        show: {
+          from: { right: "-150%" },
+          to: { right: "32px" },
+        },
+        hide: {
+          from: { right: "32px" },
+          to: { right: "-150%" },
+        },
+      },
+      animation: {
+        show: "show .5s ease-in-out forwards",
+        hide: "hide .5s ease-in-out forwards",
+      },
     },
   },
   plugins: [],

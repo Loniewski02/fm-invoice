@@ -2,8 +2,6 @@ import AuthSection from "../AuthSection";
 import RegisterForm from "./RegisterForm";
 
 const Register = () => {
- 
-
   return (
     <AuthSection>
       <div className="mb-10 flex flex-col gap-2">
@@ -14,7 +12,7 @@ const Register = () => {
           Add your details below to get started!
         </p>
       </div>
-     <RegisterForm/>
+      <RegisterForm />
     </AuthSection>
   );
 };

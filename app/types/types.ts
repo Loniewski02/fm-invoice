@@ -29,11 +29,12 @@ type Invoice = {
 };
 
 type RegisterData = {
-  email: string;
-  password: string;
-  password2: string;
+  message: string | null;
+  status: number | null;
+  data: { id: string; email: string; password: string; password2: string };
 };
 type LoginData = {
-  email: string;
-  password: string;
+  message: string | null;
+  status: number | null;
+  data: { email: string; password: string };
 };

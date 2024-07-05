@@ -5,7 +5,7 @@ import Logo from "@/public/assets/logo.svg";
 
 const AuthSection = ({ children }: { children: React.ReactNode }) => {
   return (
-    <section className="p-6">
+    <section className="relative p-6">
       <Wrapper className="relative max-w-[476px] md:rounded-lg md:bg-PureWhite md:p-10 md:shadow-sm md:dark:bg-VeryDarkBlue03">
         <ThemeSwitchBtn className="absolute right-4 top-4" />
         <div className="mb-16 flex items-start gap-2 md:mx-auto md:mb-12 md:w-max">
