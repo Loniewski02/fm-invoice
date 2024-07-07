@@ -1,13 +1,12 @@
-import connectDB from "@/config/database";
-import Invoice from "@/models/Invoice";
 import { NextRequest } from "next/server";
 
-export const GET = async (
-  req: Request | NextRequest,
-  { params }: { params: { uid: string } },
-) => {
+import Invoice from "@/models/Invoice";
+import connectDB from "@/config/database";
+
+export const GET = async (req: Request | NextRequest) => {
   try {
-    const uid = params.uid;
+    const { searchParams } = new URL(req.url);
+    const uid = searchParams.get("uid");
 
     await connectDB();
     const invoices = await Invoice.findById(uid);

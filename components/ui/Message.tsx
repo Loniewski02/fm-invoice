@@ -1,6 +1,7 @@
 "use client";
-import { MessagesContext } from "@/app/_providers/MessagesContext";
 import { useContext, useEffect } from "react";
+
+import { MessagesContext } from "@/app/_providers/MessagesContext";
 
 const Message = () => {
   const timeoutDuration = 10000;

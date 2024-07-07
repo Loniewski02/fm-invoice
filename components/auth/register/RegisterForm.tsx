@@ -1,16 +1,16 @@
 "use client";
-import Link from "next/link";
 import { useFormState } from "react-dom";
-
-import { REGISTER_INPUTS } from "@/utils/constant";
-import { FormRegister } from "@/utils/auth";
-
-import Submit from "../Submit";
-import DemoButton from "../DemoButton";
-import FormBox from "../FormBox";
-import { useContext, useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
+import { useContext, useEffect } from "react";
+import Link from "next/link";
+
+import { FormRegisterAction } from "@/utils/auth";
 import { MessagesContext } from "@/app/_providers/MessagesContext";
+import { REGISTER_INPUTS } from "@/utils/constant";
+
+import DemoButton from "../DemoButton";
+import FormBox from "@/components/ui/FormBox";
+import Submit from "@/components/ui/Submit";
 
 const initialState = {
   message: null,
@@ -24,7 +24,7 @@ const RegisterForm = () => {
 
   const { replace, refresh } = useRouter();
   const [state, action] = useFormState<RegisterData, FormData>(
-    FormRegister,
+    FormRegisterAction,
     initialState,
   );
 

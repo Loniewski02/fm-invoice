@@ -146,8 +146,9 @@ const DetailMain = ({ data }: { data: Invoice }) => {
             total="Total"
             className="hidden md:flex"
           />
-          {data.items.map((item) => (
+          {data.items.map((item, i) => (
             <PricingBlock
+              key={i}
               name={item.name}
               qty={item.quantity}
               price={item.price}

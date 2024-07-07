@@ -1,6 +1,7 @@
 import Link from "next/link";
-import Submit from "../Submit";
+
 import DemoButton from "../DemoButton";
+import Submit from "@/components/ui/Submit";
 
 const ResetForm = () => {
   return (

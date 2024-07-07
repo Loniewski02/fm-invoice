@@ -43,3 +43,128 @@ export const LOGIN_INPUTS = [
     validity: (val: string) => val.trim().length > 8,
   },
 ];
+
+export const BILL_FROM_INPUTS = [
+  {
+    id: "street-address",
+    name: "street-address",
+    label: "Street Address",
+    placeholder: "Onion street 3 ",
+    type: "text",
+  },
+  {
+    id: "post-code",
+    name: "post-code",
+    label: "Post Code",
+    placeholder: "00-001",
+    type: "text",
+  },
+  {
+    id: "city",
+    name: "city",
+    label: "City",
+    placeholder: "Warsaw",
+    type: "text",
+  },
+  {
+    id: "country",
+    name: "country",
+    label: "Country",
+    placeholder: "Poland",
+    type: "text",
+  },
+];
+
+export const BILL_TO_INPUTS = [
+  {
+    id: "client-name",
+    name: "client-name",
+    label: "Client's Name",
+    placeholder: "Alex Grim",
+    type: "text",
+  },
+  {
+    id: "email",
+    name: "email",
+    label: "Cleint's Email",
+    placeholder: "alexgrim@mail.com",
+    type: "email",
+  },
+  {
+    id: "client-street-address",
+    name: "street-address",
+    label: "Street Address",
+    placeholder: "Onion street 3 ",
+    type: "text",
+  },
+  {
+    id: "client-post-code",
+    name: "post-code",
+    label: "Post Code",
+    placeholder: "00-001",
+    type: "text",
+  },
+  {
+    id: "client-city",
+    name: "city",
+    label: "City",
+    placeholder: "Warsaw",
+    type: "text",
+  },
+  {
+    id: "client-country",
+    name: "country",
+    label: "Country",
+    placeholder: "Poland",
+    type: "text",
+  },
+];
+
+export const ITEM_INPUTS = [
+  {
+    id: "item-name",
+    name: "item-name",
+    label: "Item Name",
+    placeholder: "Banner Design",
+    type: "text",
+  },
+  {
+    id: "qty",
+    name: "qty",
+    label: "Qty.",
+    placeholder: "0",
+    type: "number",
+  },
+  {
+    id: "price",
+    name: "price",
+    label: "Price",
+    placeholder: "00.00",
+    type: "number",
+  },
+];
+
+export const PAYMENTS_INPUTS = [
+  {
+    id: "date",
+    name: "date",
+    label: "Invoice Date",
+    placeholder: "21 August 2021",
+    type: "date",
+    default: new Date(),
+  },
+  {
+    id: "terms",
+    name: "terms",
+    label: "Payment Terms",
+    placeholder: "Net 30 Days",
+    type: "text",
+  },
+  {
+    id: "description",
+    name: "description",
+    label: "Project Description",
+    placeholder: "Graphic Design",
+    type: "text",
+  },
+];

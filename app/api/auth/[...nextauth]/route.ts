@@ -1,8 +1,9 @@
-import connectDB from "@/config/database";
-import User from "@/models/User";
 import NextAuth from "next-auth/next";
 import CredentialsProvider from "next-auth/providers/credentials";
 import bcrypt from "bcryptjs";
+
+import User from "@/models/User";
+import connectDB from "@/config/database";
 
 const handler = NextAuth({
   providers: [
@@ -27,36 +28,52 @@ const handler = NextAuth({
           );
 
           if (!passwordsMatch) return null;
-
           return user;
         } catch (e) {
-          console.log("Error: " + e);
+          console.log("Error: ", e);
         }
       },
     }),
   ],
   session: {
     strategy: "jwt",
+    maxAge: 24 * 60 * 60,
   },
   secret: process.env.NEXTAUTH_SECRET,
   callbacks: {
-    async jwt({ token, user }) {
-      if (user) {
-        token.id = user.id;
-        token.picture = user.picture;
-        token.email = user.email;
+    async jwt({ token, user, session, trigger }) {
+      if (trigger === "update" && session?.address) {
+        token.address = session.address;
       }
+      //pass in user id to token
+      if (user) {
+        return {
+          ...token,
+          address: user.address,
+          id: user.id,
+          role: user.role,
+        };
+      }
+
+      //update the user in DB
+
+      await User.findByIdAndUpdate(
+        { _id: token.id },
+        { address: token.address },
+      );
+
       return token;
     },
     async session({ session, token }) {
+      //pass in user id to session
       return {
         ...session,
         user: {
+          ...session.user,
           id: token.id as string,
-          picture: token.picture as string,
-          email: token.email as string,
+          role: token.role as string,
+          address: token.address,
         },
-        error: token.error,
       };
     },
   },

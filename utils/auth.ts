@@ -2,7 +2,7 @@ import { signIn } from "next-auth/react";
 
 const apiDomain = process.env.NEXT_PUBLIC_API_DOMAIN || null;
 
-export async function FormRegister(prevState: any, formData: any) {
+export async function FormRegisterAction(prevState: any, formData: any) {
   const res = await fetch(`${apiDomain}/auth/register`, {
     method: "POST",
     body: formData,

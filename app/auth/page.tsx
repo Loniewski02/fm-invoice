@@ -1,9 +1,9 @@
 import { getServerSession } from "next-auth";
+import { redirect } from "next/navigation";
 
 import Register from "@/components/auth/register/Register";
 import Login from "@/components/auth/login/Login";
 import Reset from "@/components/auth/reset/Reset";
-import { redirect } from "next/navigation";
 
 const AuthPage = async ({
   searchParams,

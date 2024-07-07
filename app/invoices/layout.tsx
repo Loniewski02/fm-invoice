@@ -1,6 +1,7 @@
-import Navigation from "@/components/ui/Navigation";
 import { getServerSession } from "next-auth";
 import { redirect } from "next/navigation";
+
+import Navigation from "@/components/ui/Navigation";
 
 export default async function InvoicesLayout({
   children,

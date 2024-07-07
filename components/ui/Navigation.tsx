@@ -1,8 +1,10 @@
-import Logo from "@/public/assets/logo.svg";
-import avatar from "@/public/assets/image-avatar.png";
+import { getServerSession } from "next-auth";
+
 import ThemeSwitchBtn from "./ThemeSwitchBtn";
 import Logout from "./Logout";
-import { getServerSession } from "next-auth";
+
+import Logo from "@/public/assets/logo.svg";
+import avatar from "@/public/assets/image-avatar.png";
 
 const Navigation = async () => {
   const session = await getServerSession();

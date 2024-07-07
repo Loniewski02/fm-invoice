@@ -33,8 +33,15 @@ type RegisterData = {
   status: number | null;
   data: { id: string; email: string; password: string; password2: string };
 };
+
 type LoginData = {
   message: string | null;
   status: number | null;
   data: { email: string; password: string };
+};
+
+type ResidenceData = {
+  message: string | null;
+  status: number | null;
+  data: { street: string; city: string; postCode: string; country: string };
 };

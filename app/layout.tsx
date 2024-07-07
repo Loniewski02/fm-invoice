@@ -1,10 +1,11 @@
 import type { Metadata } from "next";
 import { League_Spartan } from "next/font/google";
 import ThemeProviders from "./theme-provider";
-import "./globals.css";
 import AuthProvider from "./auth-provider";
 import MessagesProvider from "./_providers/MessagesContext";
-import Message from "@/components/auth/Message";
+import "./globals.css";
+
+import Message from "@/components/ui/Message";
 
 const fontSpartan = League_Spartan({
   subsets: ["latin"],

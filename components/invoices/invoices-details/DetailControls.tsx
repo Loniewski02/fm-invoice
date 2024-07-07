@@ -1,5 +1,6 @@
 import Wrapper from "@/components/layout/Wrapper";
 import Status from "../Status";
+import Button from "@/components/ui/Button";
 
 const BUTTONS = ["edit", "delete", "mark as paid"];
 
@@ -15,12 +16,12 @@ const DetailControls = ({ status }: { status: string }) => {
         </div>
         <div className="hidden gap-2 md:flex">
           {BUTTONS.map((button, i) => (
-            <button
+            <Button
               key={i}
-              className={`${button === "edit" && "bg-DarkBlue04"} ${button === "delete" && "bg-Red09"} ${button === "mark as paid" && "bg-Violet01"} rounded-[24px] px-6 py-4 text-15 font-bold text-PureWhite first-letter:uppercase`}
+              className={`${button === "edit" && "bg-DarkBlue04"} ${button === "delete" && "bg-Red09"} ${button === "mark as paid" && "bg-Violet01"}`}
             >
               {button}
-            </button>
+            </Button>
           ))}
         </div>
       </Wrapper>

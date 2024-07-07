@@ -7,7 +7,6 @@ const connectDB = async () => {
   if (connected) {
     return;
   }
-  //connect to mongodbb
   try {
     if (process.env.MONGODB_URI) {
       await mongoose.connect(process.env.MONGODB_URI);

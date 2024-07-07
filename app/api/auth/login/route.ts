@@ -1,9 +1,9 @@
-import connectDB from "@/config/database";
-import User from "@/models/User";
-import Invoice from "@/models/Invoice";
-import { emailReg } from "@/utils/constant";
-import bcrypt from "bcryptjs";
 import { NextResponse } from "next/server";
+
+import { emailReg } from "@/utils/constant";
+
+import User from "@/models/User";
+import connectDB from "@/config/database";
 
 export async function POST(req: any) {
   try {

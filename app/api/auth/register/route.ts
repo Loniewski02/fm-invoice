@@ -1,10 +1,11 @@
-import connectDB from "@/config/database";
+import { NextResponse } from "next/server";
+import bcrypt from "bcryptjs";
+
+import { emailReg } from "@/utils/constant";
+
 import User from "@/models/User";
 import Invoice from "@/models/Invoice";
-import { emailReg } from "@/utils/constant";
-import bcrypt from "bcryptjs";
-import { NextResponse } from "next/server";
-import defaultProfilePic from "@/public/assets/image-avatar.png";
+import connectDB from "@/config/database";
 
 export async function POST(req: any) {
   try {
@@ -49,13 +50,14 @@ export async function POST(req: any) {
 
       const newUser = await User.create({
         email,
+        name: email.split("@")[0],
         password: hashPassword,
-        picture: defaultProfilePic.src,
       });
 
       const initialInvoices = {
         _id: newUser._id,
         invoices: [],
+        address: null,
       };
 
       await Invoice.create(initialInvoices);
