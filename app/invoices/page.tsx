@@ -1,6 +1,6 @@
 "use client";
 import { useSession } from "next-auth/react";
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import Link from "next/link";
 
 import { fetchInvoices } from "@/utils/request";
@@ -13,11 +13,15 @@ import Status from "@/components/invoices/Status";
 import NewInvoice from "@/components/invoices/new-invoice/NewInvoice";
 
 import ArrowRight from "@/public/assets/icon-arrow-right.svg";
+import { InvoicesContext } from "../_providers/InvoicesContext";
+import { useSearchParams } from "next/navigation";
 
 const InvoicesPage = () => {
   const { data: session } = useSession();
+  const searchParams = useSearchParams();
   const [invoices, setInvoices] = useState<Invoice[] | []>([]);
   const [loading, setLoading] = useState(true);
+  const { isInvoiceFormShown } = useContext(InvoicesContext);
 
   useEffect(() => {
     const getInvoices = async () => {
@@ -48,11 +52,21 @@ const InvoicesPage = () => {
       </>
     );
   } else {
+    const filteredData = invoices.filter((invoice) => {
+      const status = searchParams.get("status")?.toLowerCase() || null;
+
+      if (status) {
+        return invoice.status === status;
+      }
+
+      return invoice;
+    });
+
     content = (
       <>
         <section className="px-6 pb-8 md:py-6 lg:py-8">
           <Wrapper className="flex flex-col gap-4">
-            {invoices.map((item) => (
+            {filteredData.map((item) => (
               <Link
                 href={`/invoices/${item.id}`}
                 key={item.id}
@@ -87,8 +101,8 @@ const InvoicesPage = () => {
 
   return (
     <>
-      <InvoicesControls />
-      {/* <NewInvoice></NewInvoice> */}
+      <InvoicesControls size={invoices.length} />
+      {isInvoiceFormShown && <NewInvoice />}
       {content}
     </>
   );

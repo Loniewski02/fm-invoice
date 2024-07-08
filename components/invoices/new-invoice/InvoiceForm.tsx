@@ -7,14 +7,18 @@ import {
 
 import Button from "@/components/ui/Button";
 import FormBox from "@/components/ui/FormBox";
+import { useContext } from "react";
+import { InvoicesContext } from "@/app/_providers/InvoicesContext";
 
 const Card = ({ children }: { children: React.ReactNode }) => {
   return <div className="grid grid-cols-2 gap-6">{children}</div>;
 };
 
 const InvoiceForm = () => {
+  const { setIsInvoiceFormShown } = useContext(InvoicesContext);
+
   return (
-    <form action="" className="flex flex-col gap-10">
+    <form action="" className="flex flex-col gap-10 ">
       <Card>
         <h3 className="text-15 font-bold text-Violet01">Bill From</h3>
         {BILL_FROM_INPUTS.map((input, i) => (
@@ -52,6 +56,22 @@ const InvoiceForm = () => {
         <Button className="col-span-4 row-start-4 mt-7 bg-White11 text-Blue07 dark:bg-DarkBlue04 dark:text-GraylishBlue06">
           + Add New Item
         </Button>
+      </div>
+      <div className="flex flex-wrap justify-center gap-2 py-5 md:justify-between">
+        <Button
+          onClick={() => {
+            setIsInvoiceFormShown(false);
+          }}
+          className="bg-White11 text-Blue07"
+        >
+          Discard
+        </Button>
+        <div className="flex flex-wrap justify-center gap-2">
+          <Button className="bg-[#373B53] text-GraylishBlue06">
+            Save as Draft
+          </Button>
+          <Button className="bg-Violet01 text-PureWhite">Save & Send</Button>
+        </div>
       </div>
     </form>
   );

@@ -1,17 +1,40 @@
 "use client";
-import { useState } from "react";
+import { useContext, useState } from "react";
+import { usePathname, useSearchParams, useRouter } from "next/navigation";
 
 import Wrapper from "../layout/Wrapper";
 
 import Checked from "@/public/assets/icon-check.svg";
 import Plus from "@/public/assets/icon-plus.svg";
 import ArrowDown from "@/public/assets/icon-arrow-down.svg";
+import { InvoicesContext } from "@/app/_providers/InvoicesContext";
 
-const STATUS = ["draft", "pending", "paid"];
+const STATUS = ["draft", "pending", "paid", "reset"];
 
-const InvoicesControls = () => {
+const InvoicesControls = ({ size }: { size: number }) => {
   const [expanded, setExpanded] = useState(false);
-  const [status, setStatus] = useState("");
+  const [checked, setChecked] = useState("");
+  const { setIsInvoiceFormShown } = useContext(InvoicesContext);
+  const { replace } = useRouter();
+  const pathname = usePathname();
+  const searchParams = useSearchParams();
+
+  const filterHandler = (status: string) => {
+    setChecked(status);
+    const params = new URLSearchParams(searchParams);
+    if (status || status !== "reset") {
+      params.set("status", status);
+    }
+    if (status === "reset") {
+      params.delete("status");
+    }
+
+    replace(`${pathname}?${params.toString()}`);
+  };
+
+  let text = "No invoices";
+  if (size === 1) text = "There is 1 invoice";
+  if (size > 1) text = `There are ${size} total invoices`;
 
   return (
     <section className="px-6 py-8 md:pt-14 lg:pt-[78px]">
@@ -21,7 +44,7 @@ const InvoicesControls = () => {
             Invoices
           </h1>
           <p className="text-13 text-GraylishBlue06 dark:text-VeryLightBlue05">
-            No invoices
+            {text}
           </p>
         </div>
         <div className="flex items-center gap-4 md:gap-10">
@@ -45,15 +68,13 @@ const InvoicesControls = () => {
                   <button
                     key={i}
                     className="group flex w-full items-center gap-3"
-                    onClick={() => {
-                      setStatus(item);
-                    }}
+                    onClick={filterHandler.bind(null, item)}
                   >
                     <span
-                      className={`${status === item ? "bg-Violet01" : "bg-VeryLightBlue05 dark:bg-VeryDarkBlue03"} grid h-4 w-4 place-content-center rounded-[2px] border border-transparent transition group-hover:border-Violet01 `}
+                      className={`${item === "reset" && "invisible"} ${checked === item ? "bg-Violet01" : "bg-VeryLightBlue05 dark:bg-VeryDarkBlue03"} grid h-4 w-4 place-content-center rounded-[2px] border border-transparent transition group-hover:border-Violet01 `}
                     >
                       <Checked
-                        className={`${status === item ? "block" : "hidden"}`}
+                        className={`${checked === item ? "block" : "hidden"}`}
                       />
                     </span>
                     <span className="text-15 font-bold text-Black08 first-letter:uppercase dark:text-PureWhite">
@@ -64,7 +85,12 @@ const InvoicesControls = () => {
               </div>
             )}
           </div>
-          <button className="flex items-center gap-2 rounded-[24px] bg-Violet01 p-[6px] pr-4 text-15 text-White11 transition hover:bg-LightViolet02 active:scale-95">
+          <button
+            onClick={() => {
+              setIsInvoiceFormShown(true);
+            }}
+            className="flex items-center gap-2 rounded-[24px] bg-Violet01 p-[6px] pr-4 text-15 text-White11 transition hover:bg-LightViolet02 active:scale-95"
+          >
             <span className="grid h-8 w-8 place-items-center rounded-full bg-White11">
               <Plus className="block" />
             </span>

@@ -1,4 +1,3 @@
-
 const FormBox = ({
   input,
   className,
@@ -25,7 +24,7 @@ const FormBox = ({
         id={input.id}
         type={input.type}
         name={input.name}
-        className="rounded-[4px] border border-GraylishBlue06 bg-PureWhite py-3 pl-5 pr-4 text-15 dark:border-Blue07 dark:bg-LightBlack12"
+        className="rounded-[4px] border border-VeryLightBlue05 bg-PureWhite py-3 pl-5 pr-4 text-15 dark:border-DarkBlue04 dark:bg-VeryDarkBlue03"
         placeholder={input.placeholder}
         // required
       />

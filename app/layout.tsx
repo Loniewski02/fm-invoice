@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import { League_Spartan } from "next/font/google";
-import ThemeProviders from "./theme-provider";
-import AuthProvider from "./auth-provider";
+import ThemeProviders from "./_providers/theme-provider";
+import AuthProvider from "./_providers/auth-provider";
 import MessagesProvider from "./_providers/MessagesContext";
 import "./globals.css";
 

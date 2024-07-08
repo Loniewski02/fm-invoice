@@ -7,3 +7,21 @@
     @apply bg-White11 dark:bg-LightBlack12;
   }
 }
+
+@layer components {
+  .scroll::-webkit-scrollbar {
+    @apply w-3;
+  }
+
+  .scroll::-webkit-scrollbar-track {
+    @apply bg-PureWhite dark:bg-LightBlack12;
+  }
+
+  .scroll::-webkit-scrollbar-thumb {
+    @apply cursor-pointer rounded-2xl bg-VeryLightBlue05 dark:bg-DarkBlue04;
+  }
+
+  .scroll::-webkit-scrollbar-thumb:hover {
+    @apply bg-[rgb(213,216,238)] dark:bg-VeryDarkBlue03;
+  }
+}
