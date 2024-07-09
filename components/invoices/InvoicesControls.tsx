@@ -2,12 +2,13 @@
 import { useContext, useState } from "react";
 import { usePathname, useSearchParams, useRouter } from "next/navigation";
 
+import { InvoicesContext } from "@/app/_providers/InvoicesContext";
+
 import Wrapper from "../layout/Wrapper";
 
 import Checked from "@/public/assets/icon-check.svg";
 import Plus from "@/public/assets/icon-plus.svg";
 import ArrowDown from "@/public/assets/icon-arrow-down.svg";
-import { InvoicesContext } from "@/app/_providers/InvoicesContext";
 
 const STATUS = ["draft", "pending", "paid", "reset"];
 

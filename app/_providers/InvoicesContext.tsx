@@ -12,6 +12,10 @@ export const InvoicesContext = createContext(
   {} as {
     isInvoiceFormShown: boolean;
     setIsInvoiceFormShown: Dispatch<SetStateAction<boolean>>;
+    isDeleting: boolean;
+    setIsDeleting: Dispatch<SetStateAction<boolean>>;
+    invoices: [] | Invoice[];
+    setInvoices: Dispatch<SetStateAction<[] | Invoice[]>>;
   },
 );
 
@@ -21,7 +25,10 @@ export default function InvoicesProvider({
   children: ReactNode;
 }) {
   const [isInvoiceFormShown, setIsInvoiceFormShown] = useState(false);
-  //   const [] = useState();
+  const [isDeleting, setIsDeleting] = useState(false);
+  const [invoices, setInvoices] = useState<[] | Invoice[]>([]);
+
+
   useEffect(() => {
     if (isInvoiceFormShown)
       document.documentElement.classList.add("overflow-hidden");
@@ -33,6 +40,10 @@ export default function InvoicesProvider({
       value={{
         isInvoiceFormShown,
         setIsInvoiceFormShown,
+        isDeleting,
+        setIsDeleting,
+        invoices,
+        setInvoices,
       }}
     >
       {children}

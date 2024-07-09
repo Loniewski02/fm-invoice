@@ -1,3 +1,6 @@
+import { useContext } from "react";
+import { InvoicesContext } from "@/app/_providers/InvoicesContext";
+
 import Wrapper from "@/components/layout/Wrapper";
 import Status from "../Status";
 import Button from "@/components/ui/Button";
@@ -5,6 +8,16 @@ import Button from "@/components/ui/Button";
 const BUTTONS = ["edit", "delete", "mark as paid"];
 
 const DetailControls = ({ status }: { status: string }) => {
+  const { setIsInvoiceFormShown, setIsDeleting } = useContext(InvoicesContext);
+
+  const invoiceFormHandler = () => {
+    setIsInvoiceFormShown(true);
+  };
+
+  const deleteInvoiceHandler = () => {
+    setIsDeleting(true);
+  };
+
   return (
     <section className="px-6 pb-3">
       <Wrapper className="rounded-lg bg-PureWhite p-6 dark:bg-VeryDarkBlue03 md:flex md:items-center md:justify-between md:px-8 md:py-5">
@@ -18,7 +31,11 @@ const DetailControls = ({ status }: { status: string }) => {
           {BUTTONS.map((button, i) => (
             <Button
               key={i}
-              className={`${button === "edit" && "bg-DarkBlue04"} ${button === "delete" && "bg-Red09"} ${button === "mark as paid" && "bg-Violet01"}`}
+              onClick={() => {
+                if (button === "edit") invoiceFormHandler();
+                if (button === "delete") deleteInvoiceHandler();
+              }}
+              className={`${button === "edit" && "bg-DarkBlue04"} ${button === "delete" && "bg-Red09"} ${button === "mark as paid" && "bg-Violet01"} text-PureWhite`}
             >
               {button}
             </Button>

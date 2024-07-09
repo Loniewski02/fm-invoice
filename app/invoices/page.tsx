@@ -1,33 +1,44 @@
 "use client";
+import { useSearchParams } from "next/navigation";
 import { useSession } from "next-auth/react";
 import { useContext, useEffect, useState } from "react";
 import Link from "next/link";
 
 import { fetchInvoices } from "@/utils/request";
+import { InvoicesContext } from "../_providers/InvoicesContext";
 
 import Wrapper from "@/components/layout/Wrapper";
 import Empty from "@/components/invoices/Empty";
 import InvoicesControls from "@/components/invoices/InvoicesControls";
 import Start from "@/components/invoices/Start";
 import Status from "@/components/invoices/Status";
-import NewInvoice from "@/components/invoices/new-invoice/NewInvoice";
+import InvoiceFormSection from "@/components/invoices/invoices-form-section/InvoiceFormSection";
 
 import ArrowRight from "@/public/assets/icon-arrow-right.svg";
-import { InvoicesContext } from "../_providers/InvoicesContext";
-import { useSearchParams } from "next/navigation";
 
 const InvoicesPage = () => {
   const { data: session } = useSession();
   const searchParams = useSearchParams();
-  const [invoices, setInvoices] = useState<Invoice[] | []>([]);
   const [loading, setLoading] = useState(true);
-  const { isInvoiceFormShown } = useContext(InvoicesContext);
+  const { isInvoiceFormShown, invoices, setInvoices } =
+    useContext(InvoicesContext);
 
   useEffect(() => {
     const getInvoices = async () => {
       if (session?.user) {
         try {
-          const data = await fetchInvoices(session.user.id);
+          let data;
+          if (
+            session.user.role === "demo" &&
+            sessionStorage.getItem("invoices")
+          ) {
+            data = JSON.parse(sessionStorage.getItem("invoices"));
+          } else {
+            data = await fetchInvoices(session.user.id);
+            if (session.user.role === "demo") {
+              sessionStorage.setItem("invoices", JSON.stringify(data));
+            }
+          }
           setInvoices(data);
         } catch (error) {
           console.error("Failed to fetch invoices:", error);
@@ -102,7 +113,9 @@ const InvoicesPage = () => {
   return (
     <>
       <InvoicesControls size={invoices.length} />
-      {isInvoiceFormShown && <NewInvoice />}
+      {isInvoiceFormShown && (
+        <InvoiceFormSection>New Invoice</InvoiceFormSection>
+      )}
       {content}
     </>
   );
